@@ -24,7 +24,8 @@ public class SoilRelocationMod : Mod
         var listing_Standard = new Listing_Standard();
         listing_Standard.Begin(inRect);
         listing_Standard.Label("The below settings take effect immediately, no restart required.");
-        listing_Standard.CheckboxLabeled("Sandbags Use Sand", ref SoilRelocationSettings.SandbagsUseSandEnabled,
+        listing_Standard.CheckboxLabeled("Sandbags Use Sand", 
+            ref SoilRelocationSettings.SandbagsUseSandEnabled,
             "Patch vanilla sandbags so they use sand in addition to cloth.");
         listing_Standard.CheckboxLabeled("Fungal Gravel Uses Raw Fungus",
             ref SoilRelocationSettings.FungalGravelUsesRawFungusEnabled,
@@ -41,6 +42,10 @@ public class SoilRelocationMod : Mod
         listing_Standard.CheckboxLabeled("VFE Architect Packed Dirt Costs Dirt",
             ref SoilRelocationSettings.VFEArchitectPackedDirtCostsDirtEnabled,
             "Patches VFE Architect's packed dirt recipe to cost one soil to avoid an exploit that gives you free soil.");
+        listing_Standard.CheckboxLabeled("ReBuild: Doors and Corners Glass Uses Sand",
+            ref SoilRelocationSettings.ReBuildDoorsAndCornersGlassUsesSandEnabled,
+            "Patch the ReBuild: Doors and Corners glass and ballistic glass recipes so that they use sand instead of stone chunks."
+            );
         listing_Standard.End();
         base.DoSettingsWindowContents(inRect);
     }
@@ -52,6 +57,7 @@ public class SoilRelocationMod : Mod
         JustGlass.GlassUsesSandPatch.Enabled = SoilRelocationSettings.JustGlassGlassUsesSandEnabled;
         GlassPlusLights.GlassUsesSandPatch.Enabled = SoilRelocationSettings.GlassPlusLightsGlassUsesSandEnabled;
         VFEArchitect.PackedDirtCostsDirt.Enabled = SoilRelocationSettings.VFEArchitectPackedDirtCostsDirtEnabled;
+        ReBuildDoorsAndCorners.GlassUsesSandPatch.Enabled = SoilRelocationSettings.ReBuildDoorsAndCornersGlassUsesSandEnabled;
         ToggleablePatch.ProcessPatches("UdderlyEvelyn.SoilRelocation", "settings were updated");
         base.WriteSettings();
     }
