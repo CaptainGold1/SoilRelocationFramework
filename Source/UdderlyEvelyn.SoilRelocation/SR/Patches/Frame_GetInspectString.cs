@@ -24,7 +24,7 @@ internal static class Frame_GetInspectString
             var instruction = instructionList[i];
             yield return instruction;
             int num;
-            if (!fired && instruction.opcode == OpCodes.Ldc_I4_1)
+            if (!fired && instruction.opcode == OpCodes.Ldc_I4_1 && i < instructionList.Count - 1 && instructionList[i + 1].opcode == OpCodes.Call)
             {
                 num = i + 1;
                 i = num;
